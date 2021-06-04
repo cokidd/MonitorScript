@@ -1,0 +1,26 @@
+# Alert when the rate of events exceeds a threshold
+#
+name: dingtalk rule
+# writeback_index: elastalert_status
+
+type: frequency
+#
+index: filebeat-7.13.1*
+#
+num_events: 1
+#
+timeframe:
+   minutes: 1
+
+filter:
+- query:
+    query_string:
+      query: "IOException"
+
+alert:
+- "elastalert.dingtalk.DingtalkAlerter"
+
+dingtalk_webhook: 
+dingtalk_secret: 
+dingtalk_msgtype: 
+dingtalk_isAtAll: 
